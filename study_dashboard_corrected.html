@@ -1,0 +1,4002 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+<meta charset="UTF-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<title>My Study Dashboard</title>
+
+
+
+<style>
+
+
+
+* {
+
+
+
+    margin: 0;
+
+
+
+    padding: 0;
+
+
+
+    box-sizing: border-box;
+
+
+
+}
+
+
+
+body {
+
+
+
+    min-height: 100vh;
+
+
+
+    min-height: 100dvh;
+
+
+
+    font-family: Arial, sans-serif;
+
+
+
+    background: #f7f4ff;
+
+
+
+    color: #35254d;
+
+
+
+}
+
+
+
+.stage {
+
+
+
+    display: none;
+
+
+
+    width: 100%;
+
+
+
+    min-height: 100vh;
+
+
+
+    min-height: 100dvh;
+
+
+
+    padding: clamp(16px, 4vw, 40px);
+
+
+
+}
+
+
+
+.stage.active {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+}
+
+
+
+#welcomeStage {
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    text-align: center;
+
+
+
+    background: linear-gradient(145deg, #f7f4ff, #e9ddff);
+
+
+
+}
+
+
+
+.welcome-content {
+
+
+
+    width: 100%;
+
+
+
+    margin: auto 0;
+
+
+
+}
+
+
+
+.welcome-content h1 {
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: clamp(38px, 6vw, 68px);
+
+
+
+    margin-bottom: 15px;
+
+
+
+}
+
+
+
+.welcome-content p {
+
+
+
+    color: #77668c;
+
+
+
+    font-size: clamp(14px, 2vw, 19px);
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+.primary-btn {
+
+
+
+    display: block;
+
+
+
+    width: 100%;
+
+
+
+    min-height: 52px;
+
+
+
+    padding: 14px 18px;
+
+
+
+    border: none;
+
+
+
+    border-radius: 12px;
+
+
+
+    background: #6843a0;
+
+
+
+    color: white;
+
+
+
+    font-size: 16px;
+
+
+
+    font-weight: bold;
+
+
+
+    cursor: pointer;
+
+
+
+    transition: *background* 0.2s, transform 0.2s;
+
+
+
+}
+
+
+
+.primary-btn:hover {
+
+
+
+    background: #50317f;
+
+
+
+    transform: translateY(-1px);
+
+
+
+}
+
+
+
+.primary-btn:disabled {
+
+
+
+    opacity: 0.65;
+
+
+
+    cursor: wait;
+
+
+
+}
+
+
+
+.start-btn {
+
+
+
+    max-width: 420px;
+
+
+
+    margin: 20px auto 5px;
+
+
+
+}
+
+
+
+.back-btn {
+
+
+
+    align-self: flex-start;
+
+
+
+    min-height: 42px;
+
+
+
+    padding: 10px 16px;
+
+
+
+    border: 1px solid #d8c8ed;
+
+
+
+    border-radius: 10px;
+
+
+
+    background: white;
+
+
+
+    color: #6843a0;
+
+
+
+    cursor: pointer;
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+#loginStage {
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    background: linear-gradient(145deg, #f7f4ff, #e9ddff);
+
+
+
+}
+
+
+
+.login-card {
+
+
+
+    width: 100%;
+
+
+
+    max-width: 440px;
+
+
+
+    padding: clamp(22px, 5vw, 36px);
+
+
+
+    background: white;
+
+
+
+    border: 1px solid #e6dcf5;
+
+
+
+    border-radius: 20px;
+
+
+
+    box-shadow: 0 10px 35px rgba(70, 40, 100, 0.09);
+
+
+
+}
+
+
+
+.login-card h1 {
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: clamp(25px, 5vw, 34px);
+
+
+
+    text-align: center;
+
+
+
+    margin-bottom: 10px;
+
+
+
+}
+
+
+
+.login-description {
+
+
+
+    color: #77668c;
+
+
+
+    text-align: center;
+
+
+
+    line-height: 1.6;
+
+
+
+    font-size: 14px;
+
+
+
+    margin-bottom: 25px;
+
+
+
+}
+
+
+
+.form-group {
+
+
+
+    margin-bottom: 18px;
+
+
+
+}
+
+
+
+.form-group label {
+
+
+
+    display: block;
+
+
+
+    margin-bottom: 8px;
+
+
+
+    font-size: 14px;
+
+
+
+    font-weight: bold;
+
+
+
+}
+
+
+
+.form-group input {
+
+
+
+    width: 100%;
+
+
+
+    min-height: 48px;
+
+
+
+    padding: 13px;
+
+
+
+    border: 1px solid #ded3ed;
+
+
+
+    border-radius: 10px;
+
+
+
+    background: #fff;
+
+
+
+    color: #35254d;
+
+
+
+    font-size: 16px;
+
+
+
+}
+
+
+
+.form-group input:focus {
+
+
+
+    outline: 2px solid #b8a0dc;
+
+
+
+    border-color: #6843a0;
+
+
+
+}
+
+
+
+.password-wrapper {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 8px;
+
+
+
+}
+
+
+
+.password-wrapper input {
+
+
+
+    flex: 1;
+
+
+
+    min-width: 0;
+
+
+
+}
+
+
+
+.toggle-password {
+
+
+
+    min-height: 48px;
+
+
+
+    padding: 0 12px;
+
+
+
+    border: 1px solid #ded3ed;
+
+
+
+    border-radius: 10px;
+
+
+
+    background: #efe7ff;
+
+
+
+    color: #6843a0;
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+.security-note {
+
+
+
+    margin: 12px 0 18px;
+
+
+
+    color: #77668c;
+
+
+
+    font-size: 12px;
+
+
+
+    line-height: 1.6;
+
+
+
+}
+
+
+
+#formStatus {
+
+
+
+    margin-top: 14px;
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: 14px;
+
+
+
+    line-height: 1.5;
+
+
+
+    overflow-wrap: anywhere;
+
+
+
+}
+
+
+
+#subjectsStage {
+
+
+
+    width: 100%;
+
+
+
+    max-width: 950px;
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+.header {
+
+
+
+    width: 100%;
+
+
+
+    text-align: center;
+
+
+
+    padding: 22px 0 28px;
+
+
+
+}
+
+
+
+.header h1 {
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: clamp(26px, 4vw, 42px);
+
+
+
+    margin-bottom: 10px;
+
+
+
+}
+
+
+
+.header p {
+
+
+
+    color: #77668c;
+
+
+
+    font-size: clamp(13px, 1.7vw, 17px);
+
+
+
+    line-height: 1.6;
+
+
+
+}
+
+
+
+.subject-list {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 15px;
+
+
+
+    width: 100%;
+
+
+
+}
+
+
+
+.subject-card {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 15px;
+
+
+
+    width: 100%;
+
+
+
+    min-height: 82px;
+
+
+
+    padding: clamp(14px, 2vw, 23px);
+
+
+
+    background: white;
+
+
+
+    border: 1px solid #e6dcf5;
+
+
+
+    border-radius: 16px;
+
+
+
+    box-shadow: 0 4px 14px rgba(70, 40, 100, 0.07);
+
+
+
+    text-decoration: none;
+
+
+
+    color: #35254d;
+
+
+
+    transition: transform 0.2s, box-shadow 0.2s;
+
+
+
+}
+
+
+
+.subject-card:hover {
+
+
+
+    transform: translateY(-2px);
+
+
+
+    box-shadow: 0 7px 20px rgba(70, 40, 100, 0.12);
+
+
+
+}
+
+
+
+.subject-icon {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    flex-shrink: 0;
+
+
+
+    width: 48px;
+
+
+
+    height: 48px;
+
+
+
+    border-radius: 13px;
+
+
+
+    background: #efe7ff;
+
+
+
+    font-size: 24px;
+
+
+
+}
+
+
+
+.subject-info {
+
+
+
+    flex: 1;
+
+
+
+    min-width: 0;
+
+
+
+}
+
+
+
+.subject-info h2 {
+
+
+
+    font-size: clamp(15px, 2vw, 19px);
+
+
+
+    margin-bottom: 6px;
+
+
+
+    overflow-wrap: anywhere;
+
+
+
+}
+
+
+
+.subject-info p {
+
+
+
+    color: #8b7c9d;
+
+
+
+    font-size: 13px;
+
+
+
+    line-height: 1.5;
+
+
+
+}
+
+
+
+.arrow {
+
+
+
+    flex-shrink: 0;
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: 26px;
+
+
+
+}
+
+
+
+/* Important Questions PDF text search */
+.question-search-bar {
+    display: none;
+    padding: 12px 14px;
+    background: #fff;
+    border-bottom: 1px solid #e6dcf5;
+}
+.question-search-bar.active { display: block; }
+.question-search-controls { display: flex; gap: 8px; max-width: 900px; margin: 0 auto; }
+.question-search-controls input {
+    flex: 1; min-width: 0; min-height: 44px; padding: 10px 12px;
+    border: 1px solid #d8c8ed; border-radius: 9px; font-size: 16px;
+}
+.question-search-controls button {
+    min-height: 44px; padding: 10px 14px; border: 0; border-radius: 9px;
+    background: #6843a0; color: #fff; font-weight: bold; cursor: pointer;
+}
+#questionSearchStatus { max-width: 900px; margin: 8px auto 0; color: #6843a0; font-size: 13px; line-height: 1.5; }
+.question-search-results { max-width: 900px; margin: 6px auto 0; display: grid; gap: 6px; }
+.question-search-results button { text-align: left; border: 1px solid #e6dcf5; background: #f7f4ff; color: #35254d; border-radius: 8px; padding: 9px 11px; cursor: pointer; }
+
+/* STUDY FILE VIEWER + IMPORTANT NOTES */
+
+
+
+#studyFileStage {
+
+
+
+    padding: 0;
+
+
+
+    min-height: 100vh;
+
+
+
+    min-height: 100dvh;
+
+
+
+    background: #f7f4ff;
+
+
+
+}
+
+
+
+.study-toolbar {
+
+
+
+    position: sticky;
+
+
+
+    top: 0;
+
+
+
+    z-index: 20;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 12px;
+
+
+
+    padding: 12px 16px;
+
+
+
+    background: #fff;
+
+
+
+    border-bottom: 1px solid #e6dcf5;
+
+
+
+    box-shadow: 0 3px 12px rgba(70, 40, 100, .08);
+
+
+
+}
+
+
+
+.study-toolbar h2 {
+
+
+
+    min-width: 0;
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: clamp(16px, 3vw, 21px);
+
+
+
+    overflow-wrap: anywhere;
+
+
+
+}
+
+
+
+.study-menu-wrap { position: relative; flex-shrink: 0; }
+
+
+
+.study-menu-button {
+
+
+
+    width: 44px;
+
+
+
+    height: 44px;
+
+
+
+    border: 1px solid #d8c8ed;
+
+
+
+    border-radius: 12px;
+
+
+
+    background: #efe7ff;
+
+
+
+    color: #6843a0;
+
+
+
+    font-size: 27px;
+
+
+
+    line-height: 1;
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+.study-menu {
+
+
+
+    position: absolute;
+
+
+
+    top: 50px;
+
+
+
+    right: 0;
+
+
+
+    z-index: 30;
+
+
+
+    display: none;
+
+
+
+    width: 220px;
+
+
+
+    padding: 7px;
+
+
+
+    background: #fff;
+
+
+
+    border: 1px solid #e6dcf5;
+
+
+
+    border-radius: 13px;
+
+
+
+    box-shadow: 0 10px 30px rgba(40, 20, 70, .18);
+
+
+
+}
+
+
+
+.study-menu.open { display: block; }
+
+
+
+.study-menu button {
+
+
+
+    display: block;
+
+
+
+    width: 100%;
+
+
+
+    padding: 13px 12px;
+
+
+
+    border: 0;
+
+
+
+    border-radius: 8px;
+
+
+
+    background: white;
+
+
+
+    color: #35254d;
+
+
+
+    text-align: left;
+
+
+
+    font-size: 14px;
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+.study-menu button:hover { background: #f2ebff; }
+
+
+
+#studyPdf {
+
+    display: none;
+
+    width: 100%;
+
+    height: calc(100dvh - 69px);
+
+    min-height: 450px;
+
+    border: 0;
+
+    background: #e9e4f2;
+
+}
+
+
+
+#pdfCanvasViewer {
+
+    width: 100%;
+
+    height: calc(100dvh - 69px);
+
+    min-height: 450px;
+
+    overflow: auto;
+
+    background: #e9e4f2;
+
+    padding: 14px 8px 30px;
+
+    box-sizing: border-box;
+
+}
+
+#pdfCanvasViewer .pdf-page {
+
+    margin: 0 auto 14px;
+
+    max-width: 100%;
+
+    background: white;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+
+}
+
+#pdfCanvasViewer .pdf-status {
+
+    max-width: 700px;
+
+    margin: 25px auto;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #35254d;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+
+}
+
+#pdfCanvasViewer .pdf-status a { color: #6843a0; }
+
+
+
+.notes-panel {
+
+
+
+    display: none;
+
+
+
+    padding: clamp(16px, 4vw, 28px);
+
+
+
+    max-width: 900px;
+
+
+
+    width: 100%;
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+.notes-panel.active { display: block; }
+
+
+
+.notes-panel h2 { color: #6843a0; margin-bottom: 10px; }
+
+
+
+.notes-panel p { color: #77668c; line-height: 1.6; margin-bottom: 15px; }
+
+
+
+.notes-panel textarea {
+
+
+
+    display: block;
+
+
+
+    width: 100%;
+
+
+
+    min-height: 45vh;
+
+
+
+    padding: 14px;
+
+
+
+    border: 1px solid #d8c8ed;
+
+
+
+    border-radius: 12px;
+
+
+
+    resize: vertical;
+
+
+
+    font: 16px/1.6 Arial, sans-serif;
+
+
+
+    color: #35254d;
+
+
+
+    background: white;
+
+
+
+}
+
+
+
+.questions-content {
+
+
+
+    padding: 18px 20px;
+
+
+
+    border: 1px solid #e6dcf5;
+
+
+
+    border-radius: 12px;
+
+
+
+    background: #fff;
+
+
+
+    color: #35254d;
+
+
+
+    line-height: 1.65;
+
+
+
+}
+
+
+
+.important-questions-link {
+
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 12px 16px;
+
+    border-radius: 9px;
+
+    background: #6843a0;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    overflow-wrap: anywhere;
+
+}
+
+.important-questions-link:hover {
+
+    background: #50317f;
+
+}
+
+
+
+.questions-content h3 {
+
+
+
+    color: #6843a0;
+
+
+
+    margin: 8px 0 12px;
+
+
+
+}
+
+
+
+.questions-content ol {
+
+
+
+    padding-left: 24px;
+
+
+
+}
+
+
+
+.questions-content li {
+
+
+
+    margin: 0 0 12px;
+
+
+
+}
+
+
+
+
+
+.notes-actions {
+
+
+
+    display: flex;
+
+
+
+    flex-wrap: wrap;
+
+
+
+    gap: 10px;
+
+
+
+    margin-top: 14px;
+
+
+
+}
+
+
+
+.notes-actions button {
+
+
+
+    min-height: 44px;
+
+
+
+    padding: 10px 16px;
+
+
+
+    border: 0;
+
+
+
+    border-radius: 10px;
+
+
+
+    background: #6843a0;
+
+
+
+    color: white;
+
+
+
+    font-weight: bold;
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+.notes-actions .secondary { background: #efe7ff; color: #6843a0; }
+
+
+
+.notes-status { min-height: 22px; margin-top: 10px; color: #6843a0; font-size: 13px; }
+
+
+
+@media (max-width: 600px) {
+
+
+
+    .study-toolbar { padding: 10px 12px; }
+
+
+
+    #studyPdf, #pdfCanvasViewer { height: calc(100dvh - 65px); min-height: 350px; }
+
+
+
+    .study-menu { width: 205px; }
+
+
+
+}
+
+
+
+@media (max-width: 600px) {
+
+
+
+    .stage {
+
+
+
+        padding: 18px 15px;
+
+
+
+    }
+
+
+
+    .welcome-content h1 {
+
+
+
+        font-size: 42px;
+
+
+
+    }
+
+
+
+    .start-btn {
+
+
+
+        max-width: none;
+
+
+
+    }
+
+
+
+    .subject-card {
+
+
+
+        min-height: 74px;
+
+
+
+        padding: 14px 12px;
+
+
+
+        gap: 11px;
+
+
+
+        border-radius: 13px;
+
+
+
+    }
+
+
+
+    .subject-icon {
+
+
+
+        width: 43px;
+
+
+
+        height: 43px;
+
+
+
+        font-size: 21px;
+
+
+
+    }
+
+
+
+    .subject-info h2 {
+
+
+
+        font-size: 16px;
+
+
+
+    }
+
+
+
+    .subject-info p {
+
+
+
+        font-size: 12px;
+
+
+
+    }
+
+
+
+}
+
+
+
+button:focus-visible,
+
+
+
+a:focus-visible {
+
+
+
+    outline: 3px solid #a58aca;
+
+
+
+    outline-offset: 4px;
+
+
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+
+
+    *,
+
+
+
+    *::before,
+
+
+
+    *::after {
+
+
+
+        transition: none !important;
+
+
+
+    }
+
+
+
+}
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- STAGE 1: WELCOME -->
+
+
+
+<section id="welcomeStage" class="stage active">
+
+
+
+    <div class="welcome-content">
+
+
+
+        <h1>Welcome</h1>
+
+
+
+        <p>Your Personal Study Space</p>
+
+
+
+        <p>Learn something new every day.</p>
+
+
+
+    </div>
+
+
+
+    <button class="primary-btn start-btn"
+
+
+
+            type="button"
+
+
+
+            onclick="openAccessScreen()">
+
+
+
+        Let's Get Started →
+
+
+
+    </button>
+
+
+
+</section>
+
+
+
+<!-- STAGE 2: CREATE ACCOUNT / RELOGIN -->
+
+
+
+<section id="loginStage" class="stage">
+
+
+
+    <div class="login-card">
+
+
+
+        <button class="back-btn"
+
+
+
+                id="backButton"
+
+
+
+                type="button"
+
+
+
+                onclick="goBack()">
+
+
+
+            ← Back
+
+
+
+        </button>
+
+
+
+        <h1 id="loginTitle" style="margin-top:22px;">Student Login</h1>
+
+
+
+        <p class="login-description" id="loginDescription">Enter an authorized Student ID and the default password to continue.</p>
+
+
+
+        <form id="accessForm">
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="studentId">Student ID Number</label>
+
+
+
+                <input type="text" id="studentId" placeholder="e.g. 25NG1A6101" autocomplete="username" autocapitalize="characters" required>
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="studentPassword" id="passwordLabel">Password</label>
+
+
+
+                <div class="password-wrapper">
+
+
+
+                    <input type="password" id="studentPassword" placeholder="Enter password" autocomplete="current-password" required>
+
+
+
+                    <button type="button" class="toggle-password" onclick="togglePassword()">Show</button>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <p class="security-note" id="securityNote">Default password: <strong>webcap</strong>. You can change it after login.</p>
+
+
+
+            <p style="margin:0 0 16px;color:#77668c;font-size:12px;line-height:1.5;">
+
+                For access management, successful logins may be recorded using your Student ID.
+
+            </p>
+
+            <button type="submit" id="continueBtn" class="primary-btn">Login →</button>
+
+
+
+            <div id="formStatus" role="status" aria-live="polite"></div>
+
+
+
+        </form>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+<!-- STAGE 3: SUBJECTS -->
+
+
+
+<section id="subjectsStage" class="stage">
+
+
+
+    <button class="back-btn"
+
+
+
+            type="button"
+
+
+
+            onclick="lockDashboard()">
+
+
+
+        🔒 Lock Dashboard
+
+
+
+    </button>
+
+
+
+    <button class="back-btn" type="button" style="margin-top:10px" onclick="toggleChangePassword()">🔑 Change Password</button>
+
+
+
+    <section id="changePasswordPanel" class="login-card" style="display:none;max-width:520px;margin:18px auto 0">
+
+
+
+        <h2 style="color:#6843a0;margin-bottom:14px">Change Password</h2>
+
+
+
+        <form id="changePasswordForm">
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="currentPassword">Current Password</label>
+
+
+
+                <input id="currentPassword" type="password" autocomplete="current-password" required>
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="newPassword">New Password</label>
+
+
+
+                <input id="newPassword" type="password" minlength="6" autocomplete="new-password" required>
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="confirmPassword">Confirm New Password</label>
+
+
+
+                <input id="confirmPassword" type="password" minlength="6" autocomplete="new-password" required>
+
+
+
+            </div>
+
+
+
+            <button class="primary-btn" type="submit">Save New Password</button>
+
+
+
+            <div id="changePasswordStatus" role="status" aria-live="polite" style="margin-top:12px"></div>
+
+
+
+        </form>
+
+
+
+    </section>
+
+
+
+    <header class="header">
+
+
+
+        <h2 id="welcomeUsername" class="user-greeting">Welcome, Student!</h2>
+
+
+
+        <h1>Choose Your Subject</h1>
+
+
+
+        <p>Select a subject to access your study file.</p>
+
+
+
+    </header>
+
+
+
+    <div class="subject-list">
+
+
+
+        <a class="subject-card"
+
+
+
+           href="https://github.com/MXIMUSDESIMUS007/materials/blob/main/DISCRETE%20MATHEMATICS%20NOTES.pdf" onclick="openStudyFile(event, 'Mathematics', 'files/DMGT.pdf')">
+
+
+
+            <div class="subject-icon">📘</div>
+
+
+
+            <div class="subject-info">
+
+
+
+                <h2>Mathematics</h2>
+
+
+
+                <p>Open DMGT file</p>
+
+
+
+            </div>
+
+
+
+            <span class="arrow">›</span>
+
+
+
+        </a>
+
+
+
+        <a class="subject-card"
+
+
+
+           href="https://github.com/MXIMUSDESIMUS007/materials/blob/main/Principles%20of%20Artificial%20Intelligence%20(1).docx" onclick="openStudyFile(event, 'PAI', 'files/pai.pdf')">
+
+
+
+            <div class="subject-icon">🤖</div>
+
+
+
+            <div class="subject-info">
+
+
+
+                <h2>PAI</h2>
+
+
+
+                <p>Open PAI file</p>
+
+
+
+            </div>
+
+
+
+            <span class="arrow">›</span>
+
+
+
+        </a>
+
+
+
+        <a class="subject-card"
+
+
+
+           href="https://github.com/MXIMUSDESIMUS007/materials/blob/main/_OceanofPDF.com_Java_the_complete_reference_12th_edition_-_Herbert_Schildt.pdf" onclick="openStudyFile(event, 'JAVA Programming', 'files/programming.pdf')">
+
+
+
+            <div class="subject-icon">💻</div>
+
+
+
+            <div class="subject-info">
+
+
+
+                <h2>JAVA Programming</h2>
+
+
+
+                <p>Open JAVA Programming file</p>
+
+
+
+            </div>
+
+
+
+            <span class="arrow">›</span>
+
+
+
+        </a>
+
+
+
+        <a class="subject-card"
+
+
+
+           href="https://github.com/MXIMUSDESIMUS007/materials/blob/main/DBMS%20unit-1_compressed.pdf" onclick="openStudyFile(event, 'DBMS', 'files/DBMS.pdf')">
+
+
+
+            <div class="subject-icon">🗄️</div>
+
+
+
+            <div class="subject-info">
+
+
+
+                <h2>DBMS</h2>
+
+
+
+                <p>Open DBMS file</p>
+
+
+
+            </div>
+
+
+
+            <span class="arrow">›</span>
+
+
+
+        </a>
+
+
+
+        <a class="subject-card"
+
+
+
+           href="https://github.com/MXIMUSDESIMUS007/materials/blob/main/Teachers%20Manual%20Foundation%20Course%20in%20Human%20Values%20and%20Professional%20Ethics%20(eBook).pdf" onclick="openStudyFile(event, 'UHV', 'files/UHV.pdf')">
+
+
+
+            <div class="subject-icon">🌍</div>
+
+
+
+            <div class="subject-info">
+
+
+
+                <h2>UHV</h2>
+
+
+
+                <p>Open UHV file</p>
+
+
+
+            </div>
+
+
+
+            <span class="arrow">›</span>
+
+
+
+        </a>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+<!-- STAGE 4: STUDY FILE VIEWER -->
+
+
+
+<section id="studyFileStage" class="stage">
+
+
+
+    <div class="study-toolbar">
+
+
+
+        <button class="back-btn" type="button" onclick="backToSubjects()">← Subjects</button>
+
+
+
+        <h2 id="studyFileTitle">Study File</h2>
+
+
+
+        <div class="study-menu-wrap">
+
+
+
+            <button class="study-menu-button" id="studyMenuButton" type="button"
+
+
+
+                    aria-label="Study tools" aria-expanded="false"
+
+
+
+                    onclick="toggleStudyMenu(event)">⋮</button>
+
+
+
+            <div class="study-menu" id="studyMenu">
+
+
+
+                <button type="button" onclick="openNotes('points')">⭐ Important Points</button>
+
+
+
+                <button type="button" onclick="openNotes('questions')">❓ Important Questions</button>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div id="questionSearchBar" class="question-search-bar" aria-label="Search Important Questions PDF">
+        <div class="question-search-controls">
+            <input id="questionSearchInput" type="search" placeholder="Search text inside this PDF…" aria-label="Search text inside Important Questions PDF">
+            <button type="button" onclick="searchImportantQuestions()">Search</button>
+        </div>
+        <div id="questionSearchStatus" role="status" aria-live="polite"></div>
+        <div id="questionSearchResults" class="question-search-results"></div>
+    </div>
+    <div id="pdfCanvasViewer" aria-label="PDF document viewer"></div>
+
+    <iframe id="studyPdf" title="Study PDF fallback viewer" loading="eager" referrerpolicy="no-referrer"></iframe>
+
+
+
+    <section class="notes-panel" id="notesPanel">
+
+
+
+        <h2 id="notesTitle">Important Points</h2>
+
+
+
+        <p id="notesDescription">Write and save your notes for this subject.</p>
+
+        <textarea id="notesText" placeholder="Write your important points here..."></textarea>
+
+
+
+        <div id="questionsContent" class="questions-content" hidden></div>
+
+
+
+        <div class="notes-actions">
+
+
+
+            <button type="button" id="saveNotesBtn" onclick="saveNotes()">Save Notes</button>
+
+
+
+            <button type="button" class="secondary" onclick="returnToPdf()">Back to Study File</button>
+
+
+
+        </div>
+
+
+
+        <div class="notes-status" id="notesStatus" role="status" aria-live="polite"></div>
+
+
+
+    </section>
+
+
+
+</section>
+
+
+
+<script>
+
+
+
+/* Student ID allowlist login. For real security, validate IDs and passwords on a server. */
+
+
+
+const PASSWORD_PREFIX = "studyStudentPassword:";
+
+
+
+const DEFAULT_PASSWORD = "webcap";
+
+
+
+let isUnlocked = false;
+
+
+
+let loggedInId = "";
+
+
+
+const accessForm = document.getElementById("accessForm");
+
+
+
+const passwordInput = document.getElementById("studentPassword");
+
+
+
+const statusBox = document.getElementById("formStatus");
+
+
+
+const continueButton = document.getElementById("continueBtn");
+
+
+
+function isAllowedStudentId(rawId) {
+
+
+
+    const id = String(rawId || "").trim().toUpperCase();
+
+
+
+    return /^25NG1A61(?:0[1-9]|[1-5][0-9]|60)$/.test(id) ||
+
+
+
+           /^26NG5A610[1-8]$/.test(id);
+
+
+
+}
+
+
+
+function showStageDirectly(stageId) {
+
+
+
+    document.querySelectorAll(".stage").forEach(stage => stage.classList.remove("active"));
+
+
+
+    document.getElementById(stageId).classList.add("active");
+
+
+
+    window.scrollTo(0, 0);
+
+
+
+}
+
+
+
+function openAccessScreen() {
+
+
+
+    passwordInput.value = "";
+
+
+
+    document.getElementById("studentId").value = "";
+
+
+
+    statusBox.textContent = "";
+
+
+
+    document.getElementById("loginTitle").textContent = "Student Login";
+
+
+
+    document.getElementById("loginDescription").textContent = "Enter an authorized Student ID and password to continue.";
+
+
+
+    document.getElementById("securityNote").innerHTML = 'Default password: <strong>webcap</strong>. You can change it after login.';
+
+
+
+    continueButton.textContent = "Login →";
+
+
+
+    showStageDirectly("loginStage");
+
+
+
+}
+
+
+
+function goBack() {
+
+
+
+    if (isUnlocked) {
+
+
+
+        showStageDirectly("subjectsStage");
+
+
+
+        return;
+
+
+
+    }
+
+
+
+    showStageDirectly("welcomeStage");
+
+
+
+}
+
+
+
+function togglePassword() {
+
+
+
+    const button = document.querySelector(".toggle-password");
+
+
+
+    if (passwordInput.type === "password") {
+
+
+
+        passwordInput.type = "text";
+
+
+
+        button.textContent = "Hide";
+
+
+
+    } else {
+
+
+
+        passwordInput.type = "password";
+
+
+
+        button.textContent = "Show";
+
+
+
+    }
+
+
+
+}
+
+
+
+async function hashPassword(password, salt) {
+
+
+
+    if (!window.crypto || !crypto.subtle) {
+
+
+
+        throw new Error("Password hashing is unavailable. Open this page on HTTPS or localhost.");
+
+
+
+    }
+
+
+
+    const data = new TextEncoder().encode(salt + password);
+
+
+
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+
+
+    return Array.from(new Uint8Array(hashBuffer)).map(byte => byte.toString(16).padStart(2, "0")).join("");
+
+
+
+}
+
+
+
+function createSalt() {
+
+
+
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+
+
+
+    return Array.from(bytes).map(byte => byte.toString(16).padStart(2, "0")).join("");
+
+
+
+}
+
+
+
+function getPasswordRecord(id) {
+
+
+
+    try { return JSON.parse(localStorage.getItem(PASSWORD_PREFIX + id) || "null"); }
+
+
+
+    catch { return null; }
+
+
+
+}
+
+
+
+async function verifyStudentPassword(id, password) {
+
+
+
+    const record = getPasswordRecord(id);
+
+
+
+    if (!record) return password === DEFAULT_PASSWORD;
+
+
+
+    return (await hashPassword(password, record.salt)) === record.passwordHash;
+
+
+
+}
+
+
+
+async function saveStudentPassword(id, password) {
+
+
+
+    const salt = createSalt();
+
+
+
+    const passwordHash = await hashPassword(password, salt);
+
+
+
+    localStorage.setItem(PASSWORD_PREFIX + id, JSON.stringify({ salt, passwordHash }));
+
+
+
+}
+
+
+
+function unlockDashboard(id) {
+
+
+
+    isUnlocked = true;
+
+
+
+    loggedInId = id;
+
+
+
+    document.getElementById("welcomeUsername").textContent = "Welcome, " + id + "!";
+
+
+
+    passwordInput.value = "";
+
+
+
+    statusBox.textContent = "";
+
+
+
+    document.getElementById("changePasswordPanel").style.display = "none";
+
+
+
+    document.getElementById("changePasswordForm").reset();
+
+
+
+    showStageDirectly("subjectsStage");
+
+
+
+}
+
+
+
+function lockDashboard() {
+
+
+
+    isUnlocked = false;
+
+
+
+    loggedInId = "";
+
+
+
+    document.getElementById("changePasswordPanel").style.display = "none";
+
+
+
+    openAccessScreen();
+
+
+
+}
+
+
+
+// Send ONLY the Student ID after a successful login. Never send the password.
+
+async function saveStudentIDToWeb3Forms(studentId) {
+
+    try {
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json",
+
+                "Accept": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                access_key: "1cb1b3f4-2dc4-45f7-8203-6eb3c3e6c719",
+
+                subject: "Study Dashboard Access Log",
+
+                student_id: studentId
+
+            })
+
+        });
+
+
+
+        const result = await response.json();
+
+
+
+        if (!response.ok || !result.success) {
+
+            console.error("Web3Forms submission failed:", result);
+
+        }
+
+    } catch (error) {
+
+        console.error("Web3Forms error:", error);
+
+    }
+
+}
+
+
+
+accessForm.addEventListener("submit", async function(event) {
+
+
+
+    event.preventDefault();
+
+
+
+    const id = document.getElementById("studentId").value.trim().toUpperCase();
+
+
+
+    const password = passwordInput.value;
+
+
+
+    continueButton.disabled = true;
+
+
+
+    statusBox.textContent = "";
+
+
+
+    try {
+
+
+
+        if (!isAllowedStudentId(id)) {
+
+
+
+            statusBox.textContent = "This Student ID is not authorized to access the dashboard.";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        if (!(await verifyStudentPassword(id, password))) {
+
+
+
+            statusBox.textContent = "Incorrect password. If this is your first login, use the default password: webcap.";
+
+
+
+            passwordInput.value = "";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        // Send only the Student ID after successful login; never send the password.
+
+        void saveStudentIDToWeb3Forms(id);
+
+        unlockDashboard(id);
+
+
+
+    } catch (error) {
+
+
+
+        statusBox.textContent = error.message || "Login failed. Please try again.";
+
+
+
+    } finally {
+
+
+
+        continueButton.disabled = false;
+
+
+
+    }
+
+
+
+});
+
+
+
+function toggleChangePassword() {
+
+
+
+    if (!isUnlocked || !loggedInId) return;
+
+
+
+    const panel = document.getElementById("changePasswordPanel");
+
+
+
+    const willShow = panel.style.display === "none";
+
+
+
+    panel.style.display = willShow ? "block" : "none";
+
+
+
+    document.getElementById("changePasswordStatus").textContent = "";
+
+
+
+    if (willShow) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+
+
+
+}
+
+
+
+document.getElementById("changePasswordForm").addEventListener("submit", async function(event) {
+
+
+
+    event.preventDefault();
+
+
+
+    const status = document.getElementById("changePasswordStatus");
+
+
+
+    const current = document.getElementById("currentPassword").value;
+
+
+
+    const next = document.getElementById("newPassword").value;
+
+
+
+    const confirm = document.getElementById("confirmPassword").value;
+
+
+
+    try {
+
+
+
+        if (!(await verifyStudentPassword(loggedInId, current))) {
+
+
+
+            status.textContent = "Current password is incorrect.";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        if (next.length < 6) {
+
+
+
+            status.textContent = "New password must be at least 6 characters.";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        if (next !== confirm) {
+
+
+
+            status.textContent = "New passwords do not match.";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        if (next === current) {
+
+
+
+            status.textContent = "Choose a password different from your current password.";
+
+
+
+            return;
+
+
+
+        }
+
+
+
+        await saveStudentPassword(loggedInId, next);
+
+
+
+        this.reset();
+
+
+
+        status.textContent = "Password changed successfully on this browser.";
+
+
+
+    } catch (error) {
+
+
+
+        status.textContent = error.message || "Could not change password. Please try again.";
+
+
+
+    }
+
+
+
+});
+
+
+
+/* Study file viewer and subject-specific notes.
+
+   Paste a GitHub file URL into SUBJECT_PDFS or IMPORTANT_QUESTIONS below.
+
+   Public GitHub /blob/ PDF URLs are converted to raw file URLs.
+
+   PDF.js renders pages inside this dashboard; Google Viewer is the fallback.
+
+   No PDF text extraction/search is used. */
+
+
+
+let currentSubject = "";
+
+let currentPdf = "";
+
+let currentMainPdf = "";
+
+let currentNotesType = "points";
+let currentLoadedPdf = null;
+let pdfLoadVersion = 0;
+let questionTextCache = new Map();
+
+
+
+// ============================================================
+
+// PDF LINK SETTINGS — EDIT ONLY THIS SECTION WHEN YOU ADD PDFs
+
+// You may paste either a normal GitHub /blob/ link or a direct
+
+// raw.githubusercontent.com link. /blob/ links are converted automatically.
+
+// Example:
+
+// "Mathematics": "https://github.com/OWNER/REPO/blob/main/pdfs/Mathematics.pdf"
+
+// Keep a value as "" if you have not uploaded that PDF yet.
+
+// ============================================================
+
+const SUBJECT_PDFS = {
+
+    // These two URLs are already present in this project and will open in the dashboard.
+
+    "Mathematics": "https://github.com/MXIMUSDESIMUS007/materials/blob/main/DISCRETE%20MATHEMATICS%20NOTES.pdf",
+
+    "PAI": "https://github.com/MXIMUSDESIMUS007/materials/blob/main/Principles%20of%20Artificial%20Intelligence%20(1).docx",
+
+    "JAVA Programming": "https://github.com/MXIMUSDESIMUS007/materials/blob/main/_OceanofPDF.com_Java_the_complete_reference_12th_edition_-_Herbert_Schildt.pdf",
+
+    "DBMS": "https://github.com/MXIMUSDESIMUS007/materials/blob/main/DBMS%20unit-1_compressed.pdf",
+
+    "UHV": "https://github.com/MXIMUSDESIMUS007/materials/blob/main/2-1%20UHV%20%20Questions%20Unit-wise%20(2026-27).docx.pdf"
+
+};
+
+
+
+// IMPORTANT QUESTIONS PDFs — paste each subject's PDF URL in url: "...".
+
+const IMPORTANT_QUESTIONS = {
+
+    "Mathematics": {
+
+        url: "https://github.com/MXIMUSDESIMUS007/materials/blob/main/DMGT%20%20AIML%20QB%202026-27.pdf",
+
+        label: "Mathematics Important Questions"
+
+    },
+
+    "PAI": {
+
+        url: "",
+
+        label: "PAI Important Questions"
+
+    },
+
+    "JAVA Programming": {
+
+        url: "",
+
+        label: "Java Programming Important Questions"
+
+    },
+
+    "DBMS": {
+
+        url: "",
+
+        label: "DBMS Important Questions"
+
+    },
+
+    "UHV": {
+
+        url: "https://github.com/MXIMUSDESIMUS007/materials/blob/main/2-1%20UHV%20%20Questions%20Unit-wise%20(2026-27).docx.pdf",
+
+        label: "UHV Important Questions"
+
+    }
+
+};
+
+
+
+function githubFileDirectUrl(url) {
+
+    if (!url) return "";
+
+    try {
+
+        const parsed = new URL(url.trim());
+
+        if (parsed.hostname === "github.com") {
+
+            const parts = parsed.pathname.split("/").filter(Boolean);
+
+            const blobIndex = parts.indexOf("blob");
+
+            if (blobIndex >= 2 && parts.length > blobIndex + 2) {
+
+                const owner = parts[0];
+
+                const repo = parts[1];
+
+                const branch = parts[blobIndex + 1];
+
+                const filePath = parts.slice(blobIndex + 2).join("/");
+
+                return "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + "/" + filePath;
+
+            }
+
+            // Support GitHub's /raw/ style URLs too.
+
+            const rawIndex = parts.indexOf("raw");
+
+            if (rawIndex >= 2 && parts.length > rawIndex + 2) {
+
+                return "https://raw.githubusercontent.com/" + parts[0] + "/" + parts[1] + "/" + parts.slice(rawIndex + 1).join("/");
+
+            }
+
+        }
+
+        return url.trim();
+
+    } catch (error) {
+
+        return url.trim();
+
+    }
+
+}
+
+
+
+function resolveFileUrl(url) {
+
+    const directUrl = githubFileDirectUrl(url);
+
+    if (!directUrl) return "";
+
+    if (/^https?:\/\//i.test(directUrl)) return directUrl;
+
+    return new URL(directUrl, document.baseURI).href;
+
+}
+
+
+
+function googleViewerUrl(url) {
+
+    return "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(url);
+
+}
+
+
+
+let pdfJsLoadingPromise = null;
+
+function loadPdfJs() {
+
+    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+
+    if (pdfJsLoadingPromise) return pdfJsLoadingPromise;
+
+    pdfJsLoadingPromise = new Promise((resolve, reject) => {
+
+        const script = document.createElement("script");
+
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+
+        script.onload = () => {
+
+            if (!window.pdfjsLib) return reject(new Error("PDF.js library did not initialize."));
+
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+            resolve(window.pdfjsLib);
+
+        };
+
+        script.onerror = () => reject(new Error("Could not load the PDF viewer library. Check your internet connection."));
+
+        document.head.appendChild(script);
+
+    });
+
+    return pdfJsLoadingPromise;
+
+}
+
+
+
+async function displayStudyPdf(url) {
+
+    const loadVersion = ++pdfLoadVersion;
+    currentLoadedPdf = null;
+    questionTextCache = new Map();
+    const canvasViewer = document.getElementById("pdfCanvasViewer");
+
+    const pdfFrame = document.getElementById("studyPdf");
+
+    canvasViewer.style.display = "block";
+
+    pdfFrame.style.display = "none";
+
+    pdfFrame.onload = null;
+
+    pdfFrame.src = "about:blank";
+
+    canvasViewer.replaceChildren();
+
+
+
+    const status = document.createElement("div");
+
+    status.className = "pdf-status";
+
+    status.textContent = "Loading PDF…";
+
+    canvasViewer.appendChild(status);
+
+    // PDF.js cannot render Word documents. Send DOCX files directly to Google Viewer.
+    if (/\.(docx?|pptx?|xlsx?)(?:$|[?#])/i.test(url)) {
+        canvasViewer.style.display = "none";
+        pdfFrame.style.display = "block";
+        pdfFrame.src = googleViewerUrl(url);
+        return;
+    }
+
+    // Keep a direct link available in case the hosting provider blocks embedding.
+
+    const addFallbackLinks = (message) => {
+
+        canvasViewer.style.display = "block";
+
+        pdfFrame.style.display = "none";
+
+        canvasViewer.replaceChildren();
+
+        const panel = document.createElement("div");
+
+        panel.className = "pdf-status";
+
+        const heading = document.createElement("strong");
+
+        heading.textContent = "This PDF could not be displayed inside the dashboard.";
+
+        const detail = document.createElement("p");
+
+        detail.style.marginTop = "8px";
+
+        detail.textContent = message || "The file host or browser blocked embedded viewing.";
+
+        const directLink = document.createElement("a");
+
+        directLink.href = url;
+
+        directLink.target = "_blank";
+
+        directLink.rel = "noopener noreferrer";
+
+        directLink.textContent = "Open PDF directly in a new tab";
+
+        directLink.style.display = "inline-block";
+
+        directLink.style.marginTop = "12px";
+
+        const retryLink = document.createElement("a");
+
+        retryLink.href = googleViewerUrl(url);
+
+        retryLink.target = "_blank";
+
+        retryLink.rel = "noopener noreferrer";
+
+        retryLink.textContent = "Try Google PDF Viewer";
+
+        retryLink.style.display = "inline-block";
+
+        retryLink.style.margin = "12px 0 0 16px";
+
+        panel.append(heading, detail, directLink, retryLink);
+
+        canvasViewer.appendChild(panel);
+
+    };
+
+
+
+    try {
+
+        const pdfjs = await loadPdfJs();
+
+        const loadingTask = pdfjs.getDocument({ url: url, withCredentials: false });
+
+        const pdf = await loadingTask.promise;
+        if (loadVersion !== pdfLoadVersion) return;
+        currentLoadedPdf = pdf;
+
+        canvasViewer.replaceChildren();
+
+
+
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+
+            const page = await pdf.getPage(pageNumber);
+            if (loadVersion !== pdfLoadVersion) return;
+
+            const availableWidth = Math.max(280, canvasViewer.clientWidth - 28);
+
+            const baseViewport = page.getViewport({ scale: 1 });
+
+            const scale = Math.min(1.5, availableWidth / baseViewport.width);
+
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement("canvas");
+
+            canvas.className = "pdf-page";
+
+            canvas.width = Math.floor(viewport.width);
+
+            canvas.height = Math.floor(viewport.height);
+
+            canvas.style.width = "min(100%, " + Math.floor(viewport.width) + "px)";
+
+            canvas.style.height = "auto";
+
+            canvasViewer.appendChild(canvas);
+
+            await page.render({ canvasContext: canvas.getContext("2d"), viewport: viewport }).promise;
+            if (loadVersion !== pdfLoadVersion) return;
+
+        }
+
+        if (pdf.numPages === 0) throw new Error("The selected file contains no PDF pages.");
+
+    } catch (error) {
+
+        if (loadVersion !== pdfLoadVersion) return;
+        currentLoadedPdf = null;
+        console.error("PDF.js viewer error:", error);
+
+        // Try the embedded Google viewer, but keep a visible direct-open option too.
+
+        canvasViewer.style.display = "none";
+
+        pdfFrame.style.display = "block";
+
+        pdfFrame.src = googleViewerUrl(url);
+
+        // Do not assume iframe.onload means the PDF itself displayed successfully.
+
+        window.setTimeout(() => {
+
+            if (loadVersion === pdfLoadVersion && pdfFrame.style.display !== "none") {
+
+                addFallbackLinks("Embedded viewing failed: " + (error && error.message ? error.message : "unknown error") + ". The PDF host may block previews. Try opening the file directly.");
+
+            }
+
+        }, 5000);
+
+    }
+
+}
+
+
+
+function clearStudyPdf() {
+
+    pdfLoadVersion++;
+    currentLoadedPdf = null;
+    questionTextCache = new Map();
+    const searchBar = document.getElementById("questionSearchBar");
+    if (searchBar) searchBar.classList.remove("active");
+    const searchStatus = document.getElementById("questionSearchStatus");
+    const searchResults = document.getElementById("questionSearchResults");
+    if (searchStatus) searchStatus.textContent = "";
+    if (searchResults) searchResults.replaceChildren();
+    const canvasViewer = document.getElementById("pdfCanvasViewer");
+
+    const pdfFrame = document.getElementById("studyPdf");
+
+    canvasViewer.replaceChildren();
+
+    canvasViewer.style.display = "none";
+
+    pdfFrame.style.display = "none";
+
+    pdfFrame.src = "about:blank";
+
+}
+
+
+
+function openStudyFile(event, subject, fallbackPath) {
+
+    event.preventDefault();
+
+    if (!isUnlocked) {
+
+        configureForm("login");
+
+        showStageDirectly("loginStage");
+
+        statusBox.textContent = "Your dashboard is locked. Enter your password to continue.";
+
+        return;
+
+    }
+
+
+
+    currentSubject = subject;
+
+    const configuredSubjectUrl = (SUBJECT_PDFS[subject] || "").trim();
+
+
+
+    // Do not silently try a missing local files/*.pdf path: show a clear message instead.
+
+    if (!configuredSubjectUrl) {
+
+        currentMainPdf = "";
+
+        currentPdf = "";
+
+        document.getElementById("studyFileTitle").textContent = subject;
+
+        clearStudyPdf();
+
+        document.getElementById("notesPanel").classList.add("active");
+
+        document.getElementById("notesTitle").textContent = subject + " PDF";
+
+        document.getElementById("notesDescription").textContent =
+
+            "Add this subject's public GitHub PDF URL in the SUBJECT_PDFS section of the code.";
+
+        document.getElementById("notesText").style.display = "none";
+
+        document.getElementById("saveNotesBtn").style.display = "none";
+
+        const questionsContent = document.getElementById("questionsContent");
+
+        questionsContent.hidden = false;
+
+        questionsContent.textContent =
+
+            "PDF URL not added yet for " + subject +
+
+            ". In the SUBJECT_PDFS section, paste the public GitHub PDF link between the quotes for this subject, save the HTML file, and reload the dashboard.";
+
+        document.getElementById("notesStatus").textContent = "";
+
+        closeStudyMenu();
+
+        showStageDirectly("studyFileStage");
+
+        return;
+
+    }
+
+
+
+    currentMainPdf = resolveFileUrl(configuredSubjectUrl);
+
+    currentPdf = currentMainPdf;
+
+
+
+    document.getElementById("studyFileTitle").textContent = subject;
+
+    displayStudyPdf(currentMainPdf);
+
+    document.getElementById("notesPanel").classList.remove("active");
+
+    document.getElementById("notesText").style.display = "block";
+
+    document.getElementById("saveNotesBtn").style.display = "inline-block";
+
+    document.getElementById("questionsContent").hidden = true;
+
+    closeStudyMenu();
+
+    showStageDirectly("studyFileStage");
+
+}
+
+
+
+function toggleStudyMenu(event) {
+
+    event.stopPropagation();
+
+    const menu = document.getElementById("studyMenu");
+
+    const button = document.getElementById("studyMenuButton");
+
+    const isOpen = menu.classList.toggle("open");
+
+    button.setAttribute("aria-expanded", String(isOpen));
+
+}
+
+
+
+function closeStudyMenu() {
+
+    document.getElementById("studyMenu").classList.remove("open");
+
+    document.getElementById("studyMenuButton").setAttribute("aria-expanded", "false");
+
+}
+
+
+
+document.addEventListener("click", function(event) {
+
+    const wrap = document.querySelector(".study-menu-wrap");
+
+    if (wrap && !wrap.contains(event.target)) closeStudyMenu();
+
+});
+
+
+
+function openNotes(type) {
+
+    currentNotesType = type;
+
+    closeStudyMenu();
+
+
+
+    const isQuestions = type === "questions";
+
+    const title = isQuestions ? "Important Questions" : "Important Points";
+
+    const pdfFrame = document.getElementById("studyPdf");
+
+    const notesPanel = document.getElementById("notesPanel");
+
+    const notesText = document.getElementById("notesText");
+
+    const questionsContent = document.getElementById("questionsContent");
+
+    const saveButton = document.getElementById("saveNotesBtn");
+
+
+
+    document.getElementById("notesTitle").textContent = title + " — " + currentSubject;
+
+    document.getElementById("notesDescription").textContent = isQuestions
+
+        ? "The PDF is displayed here inside your dashboard."
+
+        : "Write and save your important points for this subject.";
+
+    document.getElementById("notesStatus").textContent = "";
+
+    questionsContent.replaceChildren();
+
+
+
+    if (isQuestions) {
+
+        notesText.style.display = "none";
+
+        saveButton.style.display = "none";
+
+        const resource = IMPORTANT_QUESTIONS[currentSubject];
+
+        const questionUrl = resource && resource.url ? resolveFileUrl(resource.url) : "";
+
+        if (questionUrl) {
+
+            const searchBar = document.getElementById("questionSearchBar");
+            searchBar.classList.add("active");
+            document.getElementById("questionSearchInput").value = "";
+            document.getElementById("questionSearchStatus").textContent = "Search works on selectable PDF text; scanned image-only pages may not be searchable.";
+            document.getElementById("questionSearchResults").replaceChildren();
+            currentPdf = questionUrl;
+
+            document.getElementById("studyFileTitle").textContent = title + " — " + currentSubject;
+
+            displayStudyPdf(questionUrl);
+
+            notesPanel.classList.remove("active");
+
+        } else {
+
+            clearStudyPdf();
+
+            const message = document.createElement("p");
+
+            message.textContent = "The Important Questions PDF link has not been added for this subject yet. Add its GitHub PDF URL in IMPORTANT_QUESTIONS in the code.";
+
+            questionsContent.appendChild(message);
+
+            questionsContent.hidden = false;
+
+            notesPanel.classList.add("active");
+
+        }
+
+    } else {
+
+        questionsContent.hidden = true;
+
+        notesText.style.display = "block";
+
+        saveButton.style.display = "inline-block";
+
+        notesText.value = sessionStorage.getItem(getNotesKey()) || "";
+
+        clearStudyPdf();
+
+        notesPanel.classList.add("active");
+
+    }
+
+    window.scrollTo(0, 0);
+
+}
+
+
+
+async function searchImportantQuestions() {
+    const input = document.getElementById("questionSearchInput");
+    const status = document.getElementById("questionSearchStatus");
+    const results = document.getElementById("questionSearchResults");
+    const query = input.value.trim().toLowerCase();
+    results.replaceChildren();
+
+    if (!query) {
+        status.textContent = "Type a word or phrase to search.";
+        return;
+    }
+    if (!currentLoadedPdf) {
+        status.textContent = "The PDF text is not available for searching yet. Wait for it to load, or open the PDF directly.";
+        return;
+    }
+
+    const pdfAtStart = currentLoadedPdf;
+    status.textContent = "Searching PDF text…";
+    let matchCount = 0;
+    try {
+        for (let pageNumber = 1; pageNumber <= pdfAtStart.numPages; pageNumber++) {
+            if (pdfAtStart !== currentLoadedPdf) return;
+            let text = questionTextCache.get(pageNumber);
+            if (text === undefined) {
+                const page = await pdfAtStart.getPage(pageNumber);
+                const content = await page.getTextContent();
+                text = content.items.map(item => item.str || "").join(" ");
+                questionTextCache.set(pageNumber, text);
+            }
+            const lowerText = text.toLowerCase();
+            const position = lowerText.indexOf(query);
+            if (position !== -1) {
+                matchCount++;
+                const snippetStart = Math.max(0, position - 65);
+                const snippetEnd = Math.min(text.length, position + query.length + 100);
+                const snippet = text.slice(snippetStart, snippetEnd).replace(/\s+/g, " ").trim();
+                const resultButton = document.createElement("button");
+                resultButton.type = "button";
+                resultButton.textContent = "Page " + pageNumber + ": " + (snippetStart ? "…" : "") + snippet + (snippetEnd < text.length ? "…" : "");
+                resultButton.addEventListener("click", () => {
+                    const pageCanvas = document.querySelectorAll("#pdfCanvasViewer .pdf-page")[pageNumber - 1];
+                    if (pageCanvas) pageCanvas.scrollIntoView({ behavior: "smooth", block: "start" });
+                    else status.textContent = "This page is not rendered in the embedded viewer. Open the PDF directly to view it.";
+                });
+                results.appendChild(resultButton);
+            }
+        }
+        status.textContent = matchCount
+            ? "Found matches on " + matchCount + " page(s). Select a result to jump to that page."
+            : "No matches found. Try a shorter or different keyword.";
+    } catch (error) {
+        console.error("Important Questions search error:", error);
+        status.textContent = "Could not search this PDF. It may be blocked, scanned, or still loading. Try opening it directly.";
+    }
+}
+
+document.getElementById("questionSearchInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") searchImportantQuestions();
+});
+
+function escapeHtml(value) {
+
+
+
+    return String(value).replace(/[&<>"']/g, character => ({
+
+
+
+        "&": "&amp;",
+
+
+
+        "<": "&lt;",
+
+
+
+        ">": "&gt;",
+
+
+
+        '"': "&quot;",
+
+
+
+        "'": "&#39;"
+
+
+
+    })[character]);
+
+
+
+}
+
+
+
+function getNotesKey() {
+
+
+
+    return "studyNotes:" + currentSubject + ":points";
+
+
+
+}
+
+
+
+function saveNotes() {
+
+
+
+    if (currentNotesType !== "points") return;
+
+
+
+    sessionStorage.setItem(getNotesKey(), document.getElementById("notesText").value);
+
+
+
+    document.getElementById("notesStatus").textContent = "Important points saved for this browser tab session.";
+
+
+
+}
+
+
+
+function returnToPdf() {
+
+    document.getElementById("notesPanel").classList.remove("active");
+
+    document.getElementById("notesText").style.display = "block";
+
+    document.getElementById("questionsContent").hidden = true;
+
+    document.getElementById("saveNotesBtn").style.display = "inline-block";
+
+    currentPdf = currentMainPdf;
+
+    if (currentMainPdf) displayStudyPdf(currentMainPdf);
+
+    else clearStudyPdf();
+
+    document.getElementById("studyFileTitle").textContent = currentSubject;
+
+    document.getElementById("notesStatus").textContent = "";
+
+    window.scrollTo(0, 0);
+
+}
+
+
+
+function backToSubjects() {
+
+
+
+    clearStudyPdf();
+
+    currentPdf = "";
+
+    currentMainPdf = "";
+
+
+
+    document.getElementById("notesPanel").classList.remove("active");
+
+
+
+
+
+    showStageDirectly("subjectsStage");
+
+
+
+}
+
+
+
+// Helpers referenced by the original initialization code.
+
+function getSavedAccount() {
+
+    // Some browsers block localStorage for local files or private/restricted contexts.
+
+    // Do not let a storage permission error stop the entire dashboard from opening.
+
+    try {
+
+        return Object.keys(window.localStorage).some(key => key.startsWith(PASSWORD_PREFIX));
+
+    } catch (error) {
+
+        console.warn("Local storage is unavailable; opening the dashboard without saved-account detection.", error);
+
+        return false;
+
+    }
+
+}
+
+
+
+function configureForm(mode) {
+
+    const title = document.getElementById("loginTitle");
+
+    const description = document.getElementById("loginDescription");
+
+    if (mode === "login") {
+
+        title.textContent = "Student Login";
+
+        description.textContent = "Enter an authorized Student ID and password to continue.";
+
+    } else {
+
+        title.textContent = "Student Login";
+
+        description.textContent = "Enter your authorized Student ID and default password to continue.";
+
+    }
+
+}
+
+
+
+// Always start locked after a refresh or a new page load.
+
+
+
+(function initializeDashboard() {
+
+
+
+    isUnlocked = false;
+
+
+
+    if (getSavedAccount()) {
+
+
+
+        configureForm("login");
+
+
+
+        showStageDirectly("loginStage");
+
+
+
+        statusBox.textContent =
+
+
+
+            "Please enter your password to access your subjects.";
+
+
+
+    } else {
+
+
+
+        configureForm("register");
+
+
+
+        showStageDirectly("welcomeStage");
+
+
+
+    }
+
+
+
+})();
+
+
+
+// Do not automatically lock when the browser changes tabs or restores this page.
+
+// That behavior can interrupt PDF loading and make the dashboard appear to close.
+
+// Use the dashboard's explicit lock/logout control when you want to lock it.
+
+
+
+</script>
+
+
+
+</body>
+
+
+
+</html>
